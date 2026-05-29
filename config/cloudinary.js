@@ -7,13 +7,16 @@ cloudinary.config({
   api_secret: process.env.CLOUD_API_SECRET,
 })
 
-const storage = new CloudinaryStorage({
+export const storage = new CloudinaryStorage({
   cloudinary,
   params: {
     folder: 'memers-guru',
-    allowed_formats: ['jpg', 'png', 'jpeg', 'mp4'],
+    allowed_formats: ['jpg', 'png', 'jpeg', 'mp4', 'webm'],
     resource_type: 'auto',
+    transformation: [
+      { width: 1080, height: 1920, crop: 'fill', gravity: 'auto' }
+    ],
   },
 })
 
-export { cloudinary, storage }
+export { cloudinary }
