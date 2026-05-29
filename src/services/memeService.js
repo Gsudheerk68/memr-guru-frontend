@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API = 'http://localhost:5000/api/memes'
+const API = `${import.meta.env.VITE_API_URL}/api/memes`
 
 export const getMemes = async () => {
   const res = await axios.get(API)
@@ -8,7 +8,11 @@ export const getMemes = async () => {
 }
 
 export const uploadMeme = async (formData) => {
-  const res = await axios.post(`${API}/upload`, formData)
+  const res = await axios.post(`${API}/upload`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'  // ✅ added
+    }
+  })
   return res.data
 }
 
