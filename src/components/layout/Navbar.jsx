@@ -1,6 +1,4 @@
-
 import { Link } from 'react-router-dom'
-
 export default function Navbar() {
   return (
     <header className='fixed top-0 left-0 right-0 glass z-50'>
@@ -8,10 +6,10 @@ export default function Navbar() {
         <Link to='/' className='text-3xl font-bold gradient-text'>
           Memers Guru
         </Link>
-
         <nav className='flex gap-6'>
           <Link to='/'>Home</Link>
           <Link to='/templates'>Templates</Link>
+          <Link to='/memes'>Memes</Link>
           <Link to='/upload'>Upload</Link>
         </nav>
       </div>
