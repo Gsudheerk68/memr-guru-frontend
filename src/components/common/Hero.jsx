@@ -1,10 +1,9 @@
 
 import { motion } from 'framer-motion'
-<<<<<<< HEAD
+
 import TemplatesPage from '/home/rguktvalley/Downloads/memer-guru/frontend/src/pages/TemplatesPage.jsx'
-=======
 import TemplatesPage from "../../pages/TemplatesPage.jsx"
->>>>>>> f73a6c8795ef10aed46b6f4118506471efa36170
+
 import { Link } from "react-router-dom";
 
 export default function Hero() {
