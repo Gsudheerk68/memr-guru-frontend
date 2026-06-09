@@ -1,5 +1,7 @@
 
 import { motion } from 'framer-motion'
+import TemplatesPage from '/home/rguktvalley/Downloads/memer-guru/frontend/src/pages/TemplatesPage.jsx'
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -16,13 +18,17 @@ export default function Hero() {
       </motion.h1>
 
       <div className='mt-8 flex justify-center gap-4'>
+       <Link to="/templates">
         <button className='bg-primary px-6 py-4 rounded-2xl'>
+       
           Explore Templates
         </button>
-
+         </Link>
+	 <Link to="/upload">
         <button className='glass px-6 py-4 rounded-2xl'>
           Upload Template
         </button>
+        </Link>
       </div>
     </section>
   )
