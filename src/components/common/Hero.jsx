@@ -1,8 +1,7 @@
 
 import { motion } from 'framer-motion'
 
-import TemplatesPage from '/home/rguktvalley/Downloads/memer-guru/frontend/src/pages/TemplatesPage.jsx'
-import TemplatesPage from "../../pages/TemplatesPage.jsx"
+
 
 import { Link } from "react-router-dom";
 
