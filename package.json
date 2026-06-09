@@ -9,7 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "axios": "^1.17.0",
+=======
+    "axios": "^1.7.2",
+>>>>>>> f73a6c8795ef10aed46b6f4118506471efa36170
     "framer-motion": "^11.2.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

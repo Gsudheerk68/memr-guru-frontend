@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import axios from 'axios'
 
-const API = 'http://localhost:5000/api/auth'
+const API = 'https://memer-guru-version-2-o-1.onrender.com/api/auth'
 
 export default function ProfilePage() {
   const { user, updateUser, logout, getToken } = useAuth()

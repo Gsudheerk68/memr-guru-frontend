@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 
+=======
+import { Link } from 'react-router-dom'
+>>>>>>> f73a6c8795ef10aed46b6f4118506471efa36170
 export default function Navbar() {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
@@ -13,6 +17,7 @@ export default function Navbar() {
   return (
     <header className='fixed top-0 left-0 right-0 glass z-50'>
       <div className='max-w-7xl mx-auto flex items-center justify-between p-4'>
+<<<<<<< HEAD
         <Link to='/' className='text-3xl font-bold gradient-text'>Memers Guru</Link>
         <nav className='flex items-center gap-6'>
           <Link to='/'>Home</Link>
@@ -39,6 +44,16 @@ export default function Navbar() {
               Login
             </Link>
           )}
+=======
+        <Link to='/' className='text-3xl font-bold gradient-text'>
+          Memers Guru
+        </Link>
+        <nav className='flex gap-6'>
+          <Link to='/'>Home</Link>
+          <Link to='/templates'>Templates</Link>
+          <Link to='/memes'>Memes</Link>
+          <Link to='/upload'>Upload</Link>
+>>>>>>> f73a6c8795ef10aed46b6f4118506471efa36170
         </nav>
       </div>
     </header>
