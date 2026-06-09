@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const AuthContext = createContext()
 
-const API = 'https://memer-guru-version-2-o-1.onrender.com/api/auth'
+const API = 'https://memer-guru-version-2-o-1.onrender.com/api/auth/google'
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
