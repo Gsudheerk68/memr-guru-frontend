@@ -27,7 +27,7 @@ export default function RegisterPage() {
   }
 
   const handleGoogle = () => {
-    window.location.href = 'https://memer-guru-version-2-o-1.onrender.com/api/auth'
+    window.location.href = 'https://memer-guru-version-2-o-1.onrender.com/api/auth/google'
   }
 
   return (
