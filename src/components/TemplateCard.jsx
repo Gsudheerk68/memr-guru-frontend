@@ -13,11 +13,20 @@ const getYouTubeInfo = (url) => {
   }
 }
 
-export default function TemplateCard({ template, onEdit, onDelete }) {
+export default function TemplateCard({ template, onEdit, onDelete, currentUser }) {
+  
+  // ✅ Check ownership — adjust field names to match your data model
+  const isOwner =
+    currentUser &&
+    template.createdBy &&
+    (currentUser._id === template.createdBy ||
+      currentUser._id === template.createdBy._id ||
+      currentUser.id === template.createdBy ||
+      currentUser.id === template.createdBy._id)
+
   const renderMedia = () => {
     if (template.mediaType === 'video') {
       const ytInfo = getYouTubeInfo(template.mediaUrl)
-
       if (ytInfo) {
         return (
           <div style={{ position: 'relative', width: '100%', height: '280px' }}>
@@ -57,7 +66,6 @@ export default function TemplateCard({ template, onEdit, onDelete }) {
           </div>
         )
       }
-
       return (
         <video
           src={template.mediaUrl}
@@ -66,7 +74,6 @@ export default function TemplateCard({ template, onEdit, onDelete }) {
         />
       )
     }
-
     return (
       <img
         src={template.mediaUrl}
@@ -83,7 +90,6 @@ export default function TemplateCard({ template, onEdit, onDelete }) {
       style={{ background: '#1e293b' }}
     >
       {renderMedia()}
-
       <div className='p-5'>
         <h3 className='font-bold text-xl text-white'>{template.movie}</h3>
         <p className='text-sm text-purple-400 mt-1'>{template.actor}</p>
@@ -92,20 +98,24 @@ export default function TemplateCard({ template, onEdit, onDelete }) {
           <span>❤️ {template.likes || 0}</span>
           <span>👁 {template.views || 0}</span>
         </div>
-        <div className='flex gap-2 mt-4'>
-          <button
-            onClick={onEdit}
-            className='flex-1 py-2 rounded-xl bg-primary/20 text-primary hover:bg-primary/30 transition text-sm font-semibold'
-          >
-            ✏️ Edit
-          </button>
-          <button
-            onClick={onDelete}
-            className='flex-1 py-2 rounded-xl bg-red-500/20 text-red-400 hover:bg-red-500/30 transition text-sm font-semibold'
-          >
-            🗑️ Delete
-          </button>
-        </div>
+
+        {/* ✅ Only show Edit/Delete if current user is the owner */}
+        {isOwner && (
+          <div className='flex gap-2 mt-4'>
+            <button
+              onClick={onEdit}
+              className='flex-1 py-2 rounded-xl bg-primary/20 text-primary hover:bg-primary/30 transition text-sm font-semibold'
+            >
+              ✏️ Edit
+            </button>
+            <button
+              onClick={onDelete}
+              className='flex-1 py-2 rounded-xl bg-red-500/20 text-red-400 hover:bg-red-500/30 transition text-sm font-semibold'
+            >
+              🗑️ Delete
+            </button>
+          </div>
+        )}
       </div>
     </motion.div>
   )
