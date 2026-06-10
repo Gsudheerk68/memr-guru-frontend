@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { likeTemplate, viewTemplate } from '../../services/templateService'
-
+import { useAuth } from '../../context/AuthContext'
 
 const getYouTubeInfo = (url) => {
   const match = url.match(/(?:youtube\.com\/(?:shorts\/|watch\?v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/)
@@ -19,12 +19,16 @@ const isCloudinaryVideo = (url) => {
 }
 
 export default function TemplateCard({ template, onEdit, onDelete }) {
+  const { user } = useAuth()
   const [likes, setLikes] = useState(template.likes || 0)
   const [views, setViews] = useState(template.views || 0)
   const [liked, setLiked] = useState(false)
   const [likeLoading, setLikeLoading] = useState(false)
   const [downloading, setDownloading] = useState(false)
   const [fullscreen, setFullscreen] = useState(false)
+
+  // Check if current user is the template owner
+  const isOwner = user && (user._id === template.userId || user._id === template.createdBy)
 
   const handleLike = async (e) => {
     e.stopPropagation()
@@ -125,10 +129,15 @@ export default function TemplateCard({ template, onEdit, onDelete }) {
             </button>
             <span>👁 {views}</span>
           </div>
-          <div className='flex gap-2 mt-4'>
-            <button onClick={onEdit} className='flex-1 py-2 rounded-xl bg-primary/20 text-primary hover:bg-primary/30 transition text-sm font-semibold'>✏️ Edit</button>
-            <button onClick={onDelete} className='flex-1 py-2 rounded-xl bg-red-500/20 text-red-400 hover:bg-red-500/30 transition text-sm font-semibold'>🗑️ Delete</button>
-          </div>
+          
+          {/* Only show Edit/Delete buttons if user is the template owner */}
+          {isOwner && (
+            <div className='flex gap-2 mt-4'>
+              <button onClick={onEdit} className='flex-1 py-2 rounded-xl bg-primary/20 text-primary hover:bg-primary/30 transition text-sm font-semibold'>✏️ Edit</button>
+              <button onClick={onDelete} className='flex-1 py-2 rounded-xl bg-red-500/20 text-red-400 hover:bg-red-500/30 transition text-sm font-semibold'>🗑️ Delete</button>
+            </div>
+          )}
+          
           <button onClick={handleDownload} disabled={downloading} className='w-full mt-2 py-2 rounded-xl bg-green-500/20 text-green-400 hover:bg-green-500/30 transition text-sm font-semibold disabled:opacity-50'>
             {downloading ? '⏳ Downloading...' : '⬇️ Download'}
           </button>
