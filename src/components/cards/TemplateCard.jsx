@@ -29,7 +29,7 @@ export default function TemplateCard({ template, onEdit, onDelete }) {
 
 
   // Check if current user is the template owner
-  const uploadedBy = user && (user._id === template.userId || user._id === template.createdBy)
+  const isOwner = user && (user._id === template.userId || user._id === template.createdBy)
 
   const handleLike = async (e) => {
     e.stopPropagation()
