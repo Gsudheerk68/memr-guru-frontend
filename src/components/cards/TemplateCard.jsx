@@ -26,8 +26,7 @@ export default function TemplateCard({ template, onEdit, onDelete }) {
   const [likeLoading, setLikeLoading] = useState(false)
   const [downloading, setDownloading] = useState(false)
   const [fullscreen, setFullscreen] = useState(false)
-console.log('uploadedBy:', template.uploadedBy)
-  console.log('currentUser:', currentUser)
+
 
   // Check if current user is the template owner
   const isOwner = user && (user._id === template.userId || user._id === template.createdBy)
